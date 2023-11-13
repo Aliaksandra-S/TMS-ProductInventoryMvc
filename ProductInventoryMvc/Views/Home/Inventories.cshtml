@@ -1,0 +1,30 @@
+﻿@using ProductInventoryMvc.Models.Dto
+@model InventoryListDto
+
+<h1>Список складов</h1>
+
+    <a asp-action="CreateInventory">Создать новый склад</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Кол-во продуктов</th>
+                <th>Общий вес продуктов</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var inventory in Model.Inventories)
+            {
+                <tr>
+                    <td>@inventory.Name</td>
+                    <td>@inventory.TotalQuantity</td>
+                    <td>@inventory.TotalWeight</td>
+
+                    <td>
+                        <a asp-controller="Home" asp-action="ProductList" asp-route-name="@inventory.Name">Выбрать</a>
+                        <a asp-controller="Home" asp-action="DeleteInventory" asp-route-name="@inventory.Name" >Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

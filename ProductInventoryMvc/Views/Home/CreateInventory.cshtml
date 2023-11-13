@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Create Inventory";
+}
+
+<h2>Добавить новый склад</h2>
+
+@using (Html.BeginForm("CreateInventory", "Home", FormMethod.Post))
+{
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" />
+    </div>
+
+    <div>
+        <input type="submit" value="Добавить" />
+    </div>
+}

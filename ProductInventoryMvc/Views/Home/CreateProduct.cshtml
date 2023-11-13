@@ -1,0 +1,32 @@
+﻿@using ProductInventoryMvc.Models.Dto
+@model InventoryDto
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h2>Добавить новый продукт</h2>
+
+@using (Html.BeginForm("CreateProduct", "Home", FormMethod.Post))
+{
+    <div>
+        <label for="id">Код:</label>
+        <input type="number" id="id" name="id" />
+    </div>
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" />
+    </div>
+    <div>
+        <label for="quantity">Кол-во:</label>
+        <input type="number" id="quantity" name="quantity" />
+    </div>
+    <div>
+        <label for="weight">Вес:</label>
+        <input type="number" id="weight" name="weight" />
+    </div>
+        <input type="hidden" name="inventoryName" value="@Model.Name" />
+    <div>
+        <input type="submit" value="Добавить" />
+    </div>
+}

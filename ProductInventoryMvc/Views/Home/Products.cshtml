@@ -1,0 +1,42 @@
+﻿@using ProductInventoryMvc.Models.Dto
+@model ProductListDto
+
+<h1>Список продуктов</h1>
+
+    <a asp-controller="Home" asp-action="CreateProduct" asp-route-name="@Model.Inventory.Name" >Добавить продукт</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Код</th>
+                <th>Название</th>
+                <th>Кол-во</th>
+                <th>Вес</th>
+                <th>Склад</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Weight</td>
+                    <td>@product.InventoryName</td>
+
+                    <td>
+                    <a asp-controller="Home" asp-action="EditProduct" asp-route-id="@product.Id" asp-route-inventoryName="@product.InventoryName">Изменить</a>
+               
+                    @using (Html.BeginForm("DeleteProduct", "Home", FormMethod.Post))
+                    {
+                        <input type="hidden" name="id" value="@product.Id" />
+                        <input type="hidden" name="inventoryName" value="@product.InventoryName" />
+                        <div>
+                            <input type="submit" value="Удалить" />
+                        </div>
+                    }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
